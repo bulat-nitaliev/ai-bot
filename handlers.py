@@ -59,3 +59,15 @@ async def start_domain(message: Message, state: FSMContext):
     await state.set_state(DomainState.query)
 
 
+
+
+@router.message()
+async def err_handler(message:Message, state: FSMContext):
+    await message.answer(
+        f"👋 Здравствуйте, {message.from_user.full_name}!\n"
+        "Добро пожаловать в это бот с искуственным интелектом\n"
+        "Выберете область о которой хотите узнать",
+        # "Выберите действие:",
+        reply_markup=get_main_menu(),
+    )
+    await state.set_state(DomainState.domain)
